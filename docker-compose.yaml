@@ -1,14 +1,16 @@
-service:
- jenkins:
-  conatainer_name: jenkins-ansible
-  build:
-   context: jenkins-agent-folder
-  volume:
-   - "$PWD/jenkins:/va/jenkins_home"
-  ports:
-   - "8080:8080"
-  networks:
-   - user-defined-network
+services:
+  jenkins:
+    container_name: jenkins
+    image: jenkins-ansible-image
+    build:
+      context: jenkins-ansible
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./jenkins:/var/jenkins_home"
+    networks:
+      - user-defined-network
+
 networks:
- user-defined-network:
-  driver: bridge
+  user-defined-network:
+    driver: bridge
